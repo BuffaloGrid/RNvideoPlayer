@@ -1,18 +1,21 @@
-import React, { useRef } from 'react';
-import {StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import React, { useRef, useState } from 'react';
+import {StyleSheet, Text, View, SafeAreaView, Dimensions } from 'react-native';
 import ReactNativeBitmovinPlayer, {
   ReactNativeBitmovinPlayerMethodsType,
 } from '@takeoffmedia/react-native-bitmovin-player';
+
 //import manifest from "./assets/124366fd-93e3-435d-9c0b-c77e87b159bf/manifest.mpd"
 
 //const manifest = require("./assets/124366fd-93e3-435d-9c0b-c77e87b159bf/cmaf/video-H264-360-800k-video-avc1.mp4")
 
 const App = () => {
   const ref = useRef<ReactNativeBitmovinPlayerMethodsType>();
+  const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
   return (
-    <SafeAreaView style={styles.viewHeight}>
+    <SafeAreaView style={isFullScreen ? styles.fullScreen : styles.viewHeight}>
     <ReactNativeBitmovinPlayer
-      autoPlay={false}
+      ref={ref as any}
+      autoPlay
       hasZoom={false}
       style={styles.backgroundVideo}
       configuration={{
@@ -34,10 +37,12 @@ const styles = StyleSheet.create({
     top: 0,
   },
   viewHeight: {
-    alignSelf: 'center',
-    justifyContent: 'center',
-    height: 300,
-    width: '100%',
+    height: Dimensions.get("screen").height / 2,
+    width: Dimensions.get("screen").width,
+  },
+  fullScreen:{
+    height:"100%",
+    width:"100%",
   },
   container: {
     flex: 1,

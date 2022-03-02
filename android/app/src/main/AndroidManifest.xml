@@ -16,6 +16,7 @@
         android:label="@string/app_name"
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
         android:launchMode="singleTask"
+        android:screenOrientation="fullSensor"
         android:windowSoftInputMode="adjustResize">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -26,6 +27,8 @@
       <meta-data
             android:name="BITMOVIN_PLAYER_LICENSE_KEY"
             android:value="d7367084-3a7b-4df6-8065-5f6e9d844eca" />
+        <meta-data android:name="BITMOVIN_PLAYER_CSS" android:value=""/>
+        <meta-data android:name="BITMOVIN_PLAYER_JS" android:value=""/>
     </application>
 
 </manifest>
