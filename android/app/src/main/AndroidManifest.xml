@@ -2,8 +2,10 @@
   package="com.rnvideoplayer">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="Android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="Android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE"/>
+
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
