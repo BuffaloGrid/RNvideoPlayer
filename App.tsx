@@ -1,30 +1,59 @@
-import React, { useRef, useState } from 'react';
-import {StyleSheet, Text, View, SafeAreaView, Dimensions } from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  SafeAreaView,
+  Dimensions,
+  Platform,
+  NativeModules,
+  DeviceEventEmitter,
+} from 'react-native';
 import ReactNativeBitmovinPlayer, {
   ReactNativeBitmovinPlayerMethodsType,
 } from '@takeoffmedia/react-native-bitmovin-player';
 
-//import manifest from "./assets/124366fd-93e3-435d-9c0b-c77e87b159bf/manifest.mpd"
-
-//const manifest = require("./assets/124366fd-93e3-435d-9c0b-c77e87b159bf/cmaf/video-H264-360-800k-video-avc1.mp4")
-
 const App = () => {
   const ref = useRef<ReactNativeBitmovinPlayerMethodsType>();
-  const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
+  const [showVideo, setShowVideo] = useState<boolean>(false);
+  const [uri, setUri] = useState<string>('');
+  const [isActive, setActive] = useState<boolean>(true);
+  const DownloadModule = NativeModules.DownloadModule;
+  const url =
+    'https://ftp.itec.aau.at/datasets/DASHDataset2014/BigBuckBunny/15sec/BigBuckBunny_15s_simple_2014_05_09.mpd';
+
+  const _onDownload = () => {
+    if (Platform.OS === 'android') {
+      DownloadModule.onPressDownload(url);
+    }
+  };
+
+  
+
+  const getURL = async () => {
+    const value = await DownloadModule.getOfflineSourceUrl();
+    setUri(value);
+    setShowVideo(true);
+  };
+
+  console.log(uri);
+
   return (
-    <SafeAreaView style={isFullScreen ? styles.fullScreen : styles.viewHeight}>
-    <ReactNativeBitmovinPlayer
-      ref={ref as any}
-      autoPlay
-      hasZoom={false}
-      style={styles.backgroundVideo}
-      configuration={{
-        startOffset: 0,
-        hasNextEpisode: false,
-        url: 'https://ftp.itec.aau.at/datasets/DASHDataset2014/BigBuckBunny/15sec/BigBuckBunny_15s_simple_2014_05_09.mpd',
-      }}
-    />
-    </SafeAreaView>
+    <>
+      <Button title="download video" onPress={_onDownload} />
+      <Button title="play video" color={'green'} onPress={getURL} />
+      {showVideo ? (
+        <SafeAreaView style={styles.viewHeight}>
+        <ReactNativeBitmovinPlayer
+        style={styles.backgroundVideo}
+          autoPlay
+          hasZoom={false}
+          configuration={{startOffset: 0, url: uri, hasNextEpisode: false}}
+        />
+        </SafeAreaView>
+      ): null}
+    </>
   );
 };
 
@@ -37,12 +66,12 @@ const styles = StyleSheet.create({
     top: 0,
   },
   viewHeight: {
-    height: Dimensions.get("screen").height / 2,
-    width: Dimensions.get("screen").width,
+    height: Dimensions.get('screen').height / 2,
+    width: Dimensions.get('screen').width,
   },
-  fullScreen:{
-    height:"100%",
-    width:"100%",
+  fullScreen: {
+    height: '100%',
+    width: '100%',
   },
   container: {
     flex: 1,
