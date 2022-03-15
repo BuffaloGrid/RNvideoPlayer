@@ -30,8 +30,8 @@
       <meta-data
             android:name="BITMOVIN_PLAYER_LICENSE_KEY"
             android:value="d7367084-3a7b-4df6-8065-5f6e9d844eca" />
-        <meta-data android:name="BITMOVIN_PLAYER_CSS" android:value=""/>
-        <meta-data android:name="BITMOVIN_PLAYER_JS" android:value=""/>
+        <meta-data android:name="BITMOVIN_PLAYER_CSS" android:value="file:///android_asset/bitmovin-ui.css"/>
+        <meta-data android:name="BITMOVIN_PLAYER_JS" android:value="file:///android_asset/bitmovin-ui.js"/>
     </application>
 
 </manifest>

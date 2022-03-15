@@ -37,22 +37,16 @@ const App = () => {
     setShowVideo(true);
   };
 
-  console.log(uri);
-
   return (
     <>
-      <Button title="download video" onPress={_onDownload} />
-      <Button title="play video" color={'green'} onPress={getURL} />
-      {showVideo ? (
         <SafeAreaView style={styles.viewHeight}>
         <ReactNativeBitmovinPlayer
         style={styles.backgroundVideo}
           autoPlay
           hasZoom={false}
-          configuration={{startOffset: 0, url: uri, hasNextEpisode: false}}
+          configuration={{startOffset: 0, url: url, hasNextEpisode: false}}
         />
         </SafeAreaView>
-      ): null}
     </>
   );
 };
