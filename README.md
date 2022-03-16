@@ -235,7 +235,8 @@ if(config.hasKey("style")) {
       }
       if(styleMap != null) {
         if(styleMap.hasKey("fullscreenIcon") && styleMap.getBoolean("fullscreenIcon")) {
-          _playerView.setFullscreenHandler(this);
+          DefaultFullscreenHandler defaultFullscreenHandler = new DefaultFullscreenHandler(Objects.requireNonNull(_reactContext.getCurrentActivity()),_playerView,_fullscreen);
+          _playerView.setFullscreenHandler(defaultFullscreenHandler);
         }
         if (styleMap.hasKey("uiEnabled") && !styleMap.getBoolean("uiEnabled")) {
           _playerView.setUiVisible(false);
