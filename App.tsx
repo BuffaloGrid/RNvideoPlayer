@@ -29,38 +29,23 @@ const App = () => {
     }
   };
 
-  
-
-  const getURL = async () => {
-    const value = await DownloadModule.getOfflineSourceUrl();
-    setUri(value);
-    setShowVideo(true);
-  };
 
   return (
-    <>
-        <SafeAreaView style={styles.viewHeight}>
         <ReactNativeBitmovinPlayer
         style={styles.backgroundVideo}
           autoPlay
           hasZoom={false}
           configuration={{startOffset: 0, url: url, hasNextEpisode: false}}
         />
-        </SafeAreaView>
-    </>
   );
 };
 
 const styles = StyleSheet.create({
   backgroundVideo: {
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-    right: 0,
-    top: 0,
+    flex:1,
   },
   viewHeight: {
-    height: Dimensions.get('screen').height / 2,
+    height: Dimensions.get('screen').height,
     width: Dimensions.get('screen').width,
   },
   fullScreen: {

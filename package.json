@@ -13,7 +13,6 @@
     "@takeoffmedia/react-native-bitmovin-player": "^0.2.3",
     "bitmovin-player-ui": "^3.34.0",
     "react": "16.13.1",
-    "react-devtools": "^4.23.0",
     "react-native": "0.63.4",
     "react-native-config": "^1.4.5",
     "react-native-elements": "^3.4.2"
@@ -32,8 +31,5 @@
   },
   "jest": {
     "preset": "react-native"
-  },
-  "resolutions": {
-    "react-devtools-core": "4.22.0"
   }
 }
